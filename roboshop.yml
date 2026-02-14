@@ -15,15 +15,15 @@
   #.....................create ec2 instances.........................
   - name: create ec2 instances     
     amazon.aws.ec2_instance:
-    instance_type: "t3.micro"
-    security_group: "{{ sg_id}}"
-    image_id: "{{ ami_id }}"
-    name: "{{ item }}-{{ env }}"
-    tags:
-      project: roboshop
+      instance_type: "t3.micro"
+      security_group: "{{ sg_id}}"
+      image_id: "{{ ami_id }}"
       name: "{{ item }}-{{ env }}"
-      component: "{{ item }}"
-      Environment: "{{ env }}"
+      tags:
+        project: roboshop
+        name: "{{ item }}-{{ env }}"
+        component: "{{ item }}"
+        Environment: "{{ env }}"
     loop: "{{ instances }}"
     register: ec2_output
     when: action == "create"

@@ -66,8 +66,8 @@
       state: absent
       name: "{{ item }}-{{ env }}"  
       wait: false
-      loop: "{{ instances }}"
-      when: action == "destroy"
+    loop: "{{ instances }}"
+    when: action == "destroy"
 #...........................Destroy r53 records.......................
   - name: delete r53 records
     amazon.aws.route53:
